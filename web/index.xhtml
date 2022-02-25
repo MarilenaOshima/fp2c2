@@ -39,24 +39,34 @@
             
            <p:commandButton value="Enviar" action="#{exemploController.adicionar}" update="formulario"/>
            <div>
-            <p:dataTable id="tabela" var="item" value="#{exemploController.pessoas}">
-                <f:facet name="header">
-                    Pessoas cadastradas
-                </f:facet>
-                <p:column headerText="Nome">
-                    <h:outputText value="#{item.nome}" />
-                </p:column>
-                  <p:column headerText="Data de Nascimento">
-                      <h:outputText value="#{item.dataNascimento}" />
-                </p:column>
-                  <p:column headerText="Status">
-                      <h:outputText value="#{item.status}" />
-                </p:column>
-                  <p:column headerText="UF">
-                      <h:outputText value="#{item.uf}" />
-                </p:column>
-            </p:dataTable>
-            </div> 
+               <p:dataTable id="tabela" var="item" value="#{exemploController.pessoas}"
+                            selection="#{exemploController.pessoaSelecionada}"
+                            rowKey="#{item.nome}"
+                            selectionMode="single">
+                   <f:facet name="header">
+                       Pessoas cadastradas
+                   </f:facet>
+                   <p:column headerText="Nome">
+                       <h:outputText value="#{item.nome}" />
+                   </p:column>
+                   <p:column headerText="Data de Nascimento">
+                       <h:outputText value="#{item.dataNascimento}" />
+                   </p:column>
+                   <p:column headerText="Status">
+                       <h:outputText value="#{item.status}" />
+                   </p:column>
+                   <p:column headerText="UF">
+                       <h:outputText value="#{item.uf}" />
+                   </p:column>
+
+                   <f:facet name="footer">
+                       <p:commandButton value="Excluir"
+                                        action="#{exemploController.remover()}"
+                                        update="tabela, formulario:growl"/>
+                   </f:facet>
+               </p:dataTable>
+
+           </div> 
         </h:form>
     </h:body>
 
