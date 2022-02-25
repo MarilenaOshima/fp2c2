@@ -49,6 +49,7 @@ esse escopo serve qnd vc precisa por exemplo add itens e exibir na mesma página
 public class ExemploController implements Serializable {
 
     private Pessoa pessoa;   
+    private Pessoa pessoaSelecionada;
     private List<Pessoa> pessoas = new ArrayList<>();
 
     //instância o atributo
@@ -70,10 +71,22 @@ public class ExemploController implements Serializable {
                 addMessage(null, new FacesMessage(severity, summary, detail));
     }
 
-    /*
-    public void remover () {
-        this.pessoas.remove(pessoa);
-    }*/
+
+    public void remover() {
+        System.out.println("metodo remover");
+        System.out.println(this.pessoaSelecionada.getNome());
+        for (Pessoa p : pessoas) {
+            if (p.getNome().equals(this.pessoaSelecionada.getNome())) {
+                System.out.println("achou na lista");
+                this.pessoas.remove(p);
+                addMessage(FacesMessage.SEVERITY_INFO, "Informação", "Pessoa excluída com sucesso");
+                return;
+            } else {
+                addMessage(FacesMessage.SEVERITY_WARN, "Atenção", "Selecione uma pessoa");
+            }
+        }
+    }
+
 
     public void exibir() {
         for (Pessoa p : pessoas) {
@@ -95,6 +108,14 @@ public class ExemploController implements Serializable {
 
     public void setPessoas(List<Pessoa> pessoas) {
         this.pessoas = pessoas;
+    }
+
+    public Pessoa getPessoaSelecionada() {
+        return pessoaSelecionada;
+    }
+
+    public void setPessoaSelecionada(Pessoa pessoaSelecionada) {
+        this.pessoaSelecionada = pessoaSelecionada;
     }
 
 
