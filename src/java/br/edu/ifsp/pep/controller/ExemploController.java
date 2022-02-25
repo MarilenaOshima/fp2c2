@@ -71,19 +71,21 @@ public class ExemploController implements Serializable {
                 addMessage(null, new FacesMessage(severity, summary, detail));
     }
 
-
     public void remover() {
         System.out.println("metodo remover");
-        System.out.println(this.pessoaSelecionada.getNome());
-        for (Pessoa p : pessoas) {
-            if (p.getNome().equals(this.pessoaSelecionada.getNome())) {
-                System.out.println("achou na lista");
-                this.pessoas.remove(p);
-                addMessage(FacesMessage.SEVERITY_INFO, "Informação", "Pessoa excluída com sucesso");
-                return;
-            } else {
-                addMessage(FacesMessage.SEVERITY_WARN, "Atenção", "Selecione uma pessoa");
+        //System.out.println(this.pessoaSelecionada.getNome());
+
+        if (pessoaSelecionada != null && !pessoaSelecionada.getNome().isEmpty()) {
+            for (Pessoa p : pessoas) {
+                if (p.getNome().equals(this.pessoaSelecionada.getNome())) {
+                    System.out.println("achou na lista");
+                    this.pessoas.remove(p);
+                    addMessage(FacesMessage.SEVERITY_INFO, "Informação", "Pessoa excluída com sucesso.");
+                    return;
+                }
             }
+        } else {
+            addMessage(FacesMessage.SEVERITY_WARN, "Atenção", "Selecione uma pessoa.");
         }
     }
 
