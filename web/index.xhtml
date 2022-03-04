@@ -17,10 +17,15 @@
             <p:panelGrid columns="4" layout="flex" columnClasses="p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4, p-col-12 p-md-3 p-xl-2, p-col-12 p-md-9 p-xl-4" contentStyleClass="p-align-baseline ui-fluid">
                 
                 <p:outputLabel for="nome" value="Nome" />
-                <p:inputText id="nome" value="#{exemploController.pessoa.nome}" />
+                <p:inputText id="nome" value="#{exemploController.pessoa.nome}" 
+                             required="true"
+                             requiredMessage="Informe o nome."/>
 
                 <p:outputLabel for="datanascimento" value="Data de nascimento" />
-                <p:datePicker id="datanascimento" showIcon="true" value="#{exemploController.pessoa.dataNascimento}" />
+                <p:datePicker id="datanascimento" showIcon="true" 
+                              value="#{exemploController.pessoa.dataNascimento}" 
+                              required="true"
+                              requiredMessage="Informe a data de nascimento."/>
 
                 <p:outputLabel for="status" value="Status" />
                 <p:selectBooleanButton id="status" onLabel="Ativo" offLabel="Inativo"
@@ -28,7 +33,7 @@
                                        value="#{exemploController.pessoa.status}"/>
 
                 <p:outputLabel for="uf" value="UF" />
-                <p:selectOneMenu id="uf" value="#{exemploController.pessoa.uf}" >
+                <p:selectOneMenu id="uf" value="#{exemploController.pessoa.uf}" required="true" requiredMessage="Informe o estado.">
                     <f:selectItem itemLabel="Selecione" itemValue="" />
                     <!-- item label é o q aparece item value é oq é enviado -->
                     <f:selectItem itemLabel="SP" itemValue="SP" />
