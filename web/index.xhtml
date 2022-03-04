@@ -49,7 +49,7 @@
                              update="formularioCadastro, formularioDataTable:tabela"/>
 
         </h:form>
-
+       
         <h:form id="formularioDataTable">
             <p:dataTable id="tabela" var="item" value="#{exemploController.pessoas}"
                          selection="#{exemploController.pessoaSelecionada}"
@@ -58,16 +58,16 @@
                 <f:facet name="header">
                     Pessoas cadastradas
                 </f:facet>
-                <p:column headerText="Nome" filterBy="#{item.nome}">
+                <p:column headerText="Nome" filterBy="#{item.nome}" filterMatchMode="contains" sortBy="#{item.nome}">
                     <h:outputText value="#{item.nome}" />
                 </p:column>
-                <p:column headerText="Data de Nascimento">
+                <p:column headerText="Data de Nascimento" filterBy="#{item.dataNascimento}">
                     <h:outputText value="#{item.dataNascimento}" />
                 </p:column>
-                <p:column headerText="Status">
+                <p:column headerText="Status" filterBy="#{item.status}">
                     <h:outputText value="#{item.status}" />
                 </p:column>
-                <p:column headerText="UF">
+                <p:column headerText="UF" filterBy="#{item.uf}">
                     <h:outputText value="#{item.uf}" />
                 </p:column>
 
